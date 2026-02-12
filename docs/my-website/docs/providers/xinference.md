@@ -165,7 +165,7 @@ model_list:
       api_base: http://127.0.0.1:9997/v1
       api_key: anything
     model_info:
-      mode: image_edit
+      mode: image_generation
 
 general_settings:
   master_key: sk-1234
@@ -184,33 +184,11 @@ litellm --config config.yaml
 ```bash showLineNumbers
 curl --location 'http://0.0.0.0:4000/v1/images/edits' \
 --header 'Authorization: Bearer sk-1234' \
---form 'model="xinference-sd-edit"' \
+--form 'model="stabilityai/stable-diffusion-3.5-large"' \
 --form 'image=@"/path/to/input_image.png"' \
 --form 'prompt="Make the sky more vibrant and colorful"' \
 --form 'n="1"' \
 --form 'size="1024x1024"'
-```
-
-### Advanced Usage - With Mask
-
-You can also provide a mask to specify which parts of the image should be edited:
-
-```python showLineNumbers
-from litellm import image_edit
-import os
-
-os.environ['XINFERENCE_API_BASE'] = "http://127.0.0.1:9997/v1"
-
-response = image_edit(
-    model="xinference/stabilityai/stable-diffusion-3.5-large",
-    image=open("input_image.png", "rb"),
-    mask=open("mask_image.png", "rb"),  # Transparent areas will be edited
-    prompt="Add a beautiful garden in the transparent area",
-    n=1,                           # number of images
-    size="1024x1024",             # image size
-    response_format="b64_json",   # return format
-)
-print(response)
 ```
 
 ### Supported Parameters
