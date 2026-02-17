@@ -196,7 +196,7 @@ curl --location 'http://0.0.0.0:4000/v1/images/edits' \
 | Parameter | Type | Description | Required |
 |-----------|------|-------------|----------|
 | `model` | string | The model to use for image editing | Yes |
-| `image` | file | The image to edit | Yes |
+| `image` | file | The image to edit, can be passed multiple times | Yes |
 | `prompt` | string | A text description of the desired edit | Yes |
 | `mask` | file | An image whose transparent areas indicate where to edit | No |
 | `n` | integer | Number of images to generate (1-10) | No |
